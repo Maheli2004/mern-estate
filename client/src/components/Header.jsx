@@ -16,17 +16,6 @@ export default function Header() {
             </h1>
             </Link>
 
-            <ul className="flex gap-8 items-center">
-                <Link to="/"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Home</li></Link>
-                <Link to="/about"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">About</li></Link>
-                <Link to="/profile">
-                { currentUser ? (
-                    <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 object-cover" src={currentUser.avatar} alt="profile"/>
-                ): <li className="text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Sign In</li>
-                }
-                </Link>
-            </ul>
-            
             <form className='p-2.5 rounded-lg flex items-center m-1 text-sm border border-gray-400 backdrop-brightness-40 hover:border-white'>
                 <input type='text' placeholder='Search...' 
                 className='text-white bg-transparent focus:outline-none w-24 sm:w-64'/>
@@ -35,6 +24,19 @@ export default function Header() {
                 {/* <FaSearch className="text-slate-600"/> */}
 
             </form>
+
+            <ul className="flex gap-8 items-center">
+                <Link to="/"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Home</li></Link>
+                <Link to="/about"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">About</li></Link>
+                <Link to="/profile">
+                { currentUser ? (
+                    <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 object-cover" src={currentUser.avatar} alt="profile"/>
+                ): <li className="text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Sign In</li>
+                }
+                </Link>
+            </ul>
+            
+            
     
         </div>
     </header>
