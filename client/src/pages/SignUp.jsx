@@ -80,7 +80,6 @@ export default function SignUp() {
             <button disabled={loading} className="bg-[#3182CE] rounded-lg text-white shadow-lg py-3 mt-5 hover:bg-blue-600 transition duration-300 disabled:opacity-80">
               {loading ? "Loading..." : "Sign Up"}
             </button>
-            <OAuth/>
           </form>
 
           <p className="text-gray-600 mt-2 text-center sm:text-left">Already a member? <Link to={"/sign-in"} className="text-[#3182CE] hover:underline">Sign in</Link></p>
@@ -89,10 +88,8 @@ export default function SignUp() {
             <hr className="w-2/5 border-gray-300" />
             <p className="mx-4 text-gray-400">OR</p>
             <hr className="w-2/5 border-gray-300" />
-          </div>
-
-          <button className="bg-[#ff0000] rounded-lg text-white shadow-lg py-3 mt-4 hover:bg-red-600 transition duration-300 w-full">Sign Up with Google</button>
-          
+          </div>  
+          <OAuth/>  
         </div>
       </div>
     </div>
