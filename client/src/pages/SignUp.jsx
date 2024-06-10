@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import {FaSearch} from "react-icons/fa";
 import { useState } from "react";
+import OAuth from "../components/OAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -79,6 +80,7 @@ export default function SignUp() {
             <button disabled={loading} className="bg-[#3182CE] rounded-lg text-white shadow-lg py-3 mt-5 hover:bg-blue-600 transition duration-300 disabled:opacity-80">
               {loading ? "Loading..." : "Sign Up"}
             </button>
+            <OAuth/>
           </form>
 
           <p className="text-gray-600 mt-2 text-center sm:text-left">Already a member? <Link to={"/sign-in"} className="text-[#3182CE] hover:underline">Sign in</Link></p>

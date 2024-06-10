@@ -3,6 +3,7 @@ import {FaSearch} from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
+import OAuth from "../components/OAuth";
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -87,7 +88,8 @@ export default function SignIn() {
             <hr className="w-2/5 border-gray-300" />
           </div>
 
-          <button className="bg-[#ff0000] rounded-lg text-white shadow-lg py-3 mt-4 hover:bg-red-600 transition duration-300 w-full">Sign In with Google</button>
+          {/* <button className="bg-[#ff0000] rounded-lg text-white shadow-lg py-3 mt-4 hover:bg-red-600 transition duration-300 w-full">Sign In with Google</button> */}
+          <OAuth/>
           
         </div>
       </div>
