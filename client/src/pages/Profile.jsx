@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 export default function Profile() {
   const {currentUser} = useSelector (state => state.user)
   return (
-    <div className ="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-whitw shadow-xl rounded-lg text-gray-900 p-3 mt-10 mb-10 ">
+    <div className ="max-w-3xl mx-4 sm:max-w-lg md:max-w-2xl lg:max-w-lg xl:max-w-3xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-whitw shadow-xl rounded-lg text-gray-900 p-3 mt-10 mb-10 ">
       <h1 className="text-3xl font-semibold text-center my-5">Profile</h1>
 
       <div className ="rounded-t-lg h-32 overflow-hidden">
@@ -15,7 +15,7 @@ export default function Profile() {
         <input type="text" placeholder="username" className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="username"/>
         <input type="email" placeholder="email" className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="email"/>
         <input type="password" placeholder="password" className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="password"/>
-        <button className="bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-5 hover:bg-opacity-95 transition duration-300 disabled:opacity-80">update</button>
+        <button className=" bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-5 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-4/5 mx-auto">update</button>
       </form>
 
       <div className="flex justify-between mt-5">
