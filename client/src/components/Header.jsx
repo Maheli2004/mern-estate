@@ -21,7 +21,7 @@ export default function Header() {
                 <Link to="/about"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">About</li></Link>
                 <Link to="/profile">
                 { currentUser ? (
-                    <img className="rounded-full h-7 w-7 object-cover" src={currentUser.avatar} alt="profile"/>
+                    <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 object-cover" src={currentUser.avatar} alt="profile"/>
                 ): <li className="text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Sign In</li>
                 }
                 </Link>
