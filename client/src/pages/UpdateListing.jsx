@@ -1,14 +1,15 @@
 import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function CreateListing() {
+export default function UpdateListing() {
   const {currentUser} = useSelector(state => state.user);
   const navigate = useNavigate();
+  const params = useParams();
   const [files,setFiles] = useState([]);
   const [formData, setFormData] = useState({
     imageUrls: [],
@@ -28,7 +29,21 @@ export default function CreateListing() {
   const[uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+
+  useEffect(()=> {
+    const fetchListing = async () => {
+        const listingId = params.listingId;
+        const res = await fetch(`/api/listing/get/${listingId}`);
+        const data = await res.json();
+
+        if(data.success === false) {
+            console.log(data.message);
+            return;
+        }
+        setFormData(data);
+    };
+    fetchListing();
+  }, []);
 
   const handleImageSubmit = () => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
@@ -117,7 +132,7 @@ export default function CreateListing() {
       if(+formData.regularPrice < +formData.discountPrice) return setError("Discount price must be lower than regular price");
       setLoading(true);
       setError(false);
-      const res = await fetch('/api/listing/create' , {
+      const res = await fetch(`/api/listing/update/${params.listingId}` , {
         method: 'POST',
         headers: {
           'Content-Type' : 'application/json',
@@ -147,7 +162,7 @@ export default function CreateListing() {
 
       <div className="flex items-center">
         <Link to={"/profile"} ><FaArrowLeft className="text-xl m-3" /></Link>
-        <h1 className="text-2xl font-bold p-3 my-7">Create a Listing</h1>
+        <h1 className="text-2xl font-bold p-3 my-7">Update a Listing</h1>
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
@@ -256,11 +271,11 @@ export default function CreateListing() {
                 </div>
               ))}
             <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:shadow-lg disabled:opacity-80'>
-              {loading ? "Creating..." : "Create listing"}</button>
+              {loading ? "Creating..." : "Update listing"}</button>
               {error && <p className='text-red-700 text-sm'>{error}</p>}
           </div>
       </form>
-      <button className='bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-3 mb-3 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-3/5 mx-auto block'>Create Listing</button>
+      <button className='bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-3 mb-3 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-3/5 mx-auto block'>Update Listing</button>
     </main>
   );
 }

@@ -222,9 +222,16 @@ export default function Profile() {
 
         <div className='flex flex-col items-center'>
           <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+
+          <Link to={`/update-listing/${listing._id}`}>
           <button  className='text-green-700 uppercase'>Edit</button>
+          </Link>
+
           <FaArrowLeft onClick={()=>handleListingDelete(listing._id)} className="text-xl m-3 cursor-pointer" type='button' />
-          <FaArrowLeft className="text-xl m-3" type='button' />
+
+          <Link to={`/update-listing/${listing._id}`} >
+          <FaArrowLeft className="text-xl m-3 cursor-pointer" type='button' />
+          </Link>
         </div>
 
       </div>))}
