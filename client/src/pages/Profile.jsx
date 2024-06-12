@@ -130,6 +130,23 @@ export default function Profile() {
     }
   };
 
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message)
+        return;
+      }
+      setUserListings((prev) => 
+        prev.filter((listing) => listing._id !== listingId));
+    } catch (error) {
+      console.log(error.message)
+      }
+  };
+
   return (
     <div className ="max-w-3xl mx-4 sm:max-w-lg md:max-w-2xl lg:max-w-lg xl:max-w-3xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mt-10 mb-10 ">
       <h1 className="text-3xl font-semibold text-center my-5">Profile</h1>
@@ -204,9 +221,9 @@ export default function Profile() {
         </Link>
 
         <div className='flex flex-col items-center'>
-          <button className='text-red-700 uppercase'>Delete</button>
-          <button className='text-green-700 uppercase'>Edit</button>
-          <FaArrowLeft className="text-xl m-3" type='button' />
+          <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+          <button  className='text-green-700 uppercase'>Edit</button>
+          <FaArrowLeft onClick={()=>handleListingDelete(listing._id)} className="text-xl m-3 cursor-pointer" type='button' />
           <FaArrowLeft className="text-xl m-3" type='button' />
         </div>
 
