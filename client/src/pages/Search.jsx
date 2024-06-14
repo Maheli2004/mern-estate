@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ListingItem from "../components/ListingItem.jsx";
 
 export default function Search() {
     const navigate = useNavigate();
@@ -9,11 +10,11 @@ export default function Search() {
         parking: false,
         furnished: false,
         offer: false,
-        sort: "created_at",
+        sort: 'created_at',
         order: "desc",
     });
 
-    const [, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
     console.log(listings);
 
@@ -72,13 +73,13 @@ export default function Search() {
             setSidebardata({...sidebardata, [e.target.id]: e.target.checked || e.target.checked === "true" ? true: false})
         }
         
-        if(e.target.id === "sort_order"){
-            const sort = e.target.value.split("_")[0] || "created_at";
-
-            const order = e.target.value.split("_")[1] || "desc";
-
-            setSidebardata({...sidebardata, sort, order});
-        }
+        if (e.target.id === 'sort_order') {
+            const sort = e.target.value.split('_')[0] || 'created_at';
+      
+            const order = e.target.value.split('_')[1] || 'desc';
+      
+            setSidebardata({ ...sidebardata, sort, order });
+          }
         
     };
 
@@ -90,7 +91,7 @@ export default function Search() {
         urlParams.set("parking", sidebardata.parking)
         urlParams.set("furnished", sidebardata.furnished)
         urlParams.set("offer", sidebardata.offer)
-        urlParams.set("sort", sidebardata.sort)
+        urlParams.set('sort', sidebardata.sort);
         urlParams.set("order", sidebardata.order)
         const searchQuery = urlParams.toString()
         navigate(`/search?${searchQuery}`)
@@ -142,22 +143,33 @@ export default function Search() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                    <label className="font-semibold">Sort: </label>
-                    <select onChange={handleChange} defaultValue={"created_at_desc"} id="sort_order" className="border rounded-lg p-3">
-                        <option value="regularPrice_desc">Price high to low</option>
-                        <option value="regularPrice_asc">Price low to high</option>
-                        <option value="CreatedAt_desc">Latest</option>
-                        <option value="CreatedAt_asc">Oldest</option>
+                <div className='flex items-center gap-2'>
+                    <label className='font-semibold'>Sort:</label>
+                    <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg p-3'>
+                        <option value='regularPrice_desc'>Price high to low</option>
+                        <option value='regularPrice_asc'>Price low to hight</option>
+                        <option value='createdAt_desc'>Latest</option>
+                        <option value='createdAt_asc'>Oldest</option>
                     </select>
                 </div>
-
                 <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">Search</button>
             </form>
         </div>
 
-        <div className="">
+        <div className="flex-1">
             <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">Listing results: </h1>
+            <div className="p-7 flex flex-wrap gap-4">
+                {!loading && listings.length === 0 && (
+                    <p className="text-xl text-slate-700">No listing found</p>
+                )}
+
+                {loading && (
+                    <p className="text-xl text-slate-700 text-center w-full">Loading...</p>
+                )}
+
+                { !loading && listings && listings.map((listing) => <ListingItem key={listing.id} listing={listing} />)}
+
+            </div>
         </div>
 
     </div>
