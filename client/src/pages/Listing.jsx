@@ -42,7 +42,7 @@ export default function Listing() {
     }, [params.listingId]);
     console.log(loading)
   return (
-    <main className="bg-white m-3 p-3">
+    <main className="bg-white m-3 p-3 pt-16">
       {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
       {error && (
         <p className='text-center my-7 text-2xl'>Something went wrong!</p>
