@@ -29,8 +29,9 @@ export default function OAuth() {
         }
     };
   return (
-    <button onClick={handleGoogleClick} type="button" className="bg-[#ff0000] rounded-lg text-white shadow-lg py-3 mt-4 hover:bg-red-600 transition duration-300 w-full ">
-        Continue with google
+    <button onClick={handleGoogleClick} type="button" className="flex items-center justify-center gap-3 border border-slate-400 rounded-lg text-black shadow-md py-3 mt-6 hover:bg-gray-200 transition duration-300 w-full ">
+      <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo"/>
+      Continue with Google
     </button>
   )
 }

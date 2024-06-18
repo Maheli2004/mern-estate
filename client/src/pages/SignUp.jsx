@@ -47,7 +47,7 @@ export default function SignUp() {
   // console.log(formData);
   
   return (
-    <div className="pt-10 bg-black h-screen">
+    <div className="pt-10 bg-black h-screen pt-16">
       <div className="h-5/6 flex bg-white rounded-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl" style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)" }}>
         
         <div className="w-full p-12 lg:w-1/2 rounded-lg">
