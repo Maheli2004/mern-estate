@@ -143,11 +143,13 @@ export default function CreateListing() {
   }
 
   return (
+    <div className='bg-gradient-to-r from-[#031411] to-[#07221d] p-3 pt-16'>
     <main className =" bg-white shadow-xl rounded-lg m-5 p-3 max-w-4xl mx-auto">
 
       <div className="flex items-center">
         <Link to={"/profile"} ><FaArrowLeft className="text-xl m-3" /></Link>
         <h1 className="text-2xl font-bold p-3 my-7">Create a Listing</h1>
+        
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
@@ -255,12 +257,12 @@ export default function CreateListing() {
                 </button>
                 </div>
               ))}
-            <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:shadow-lg disabled:opacity-80'>
+            <button disabled={loading || uploading} className=' bg-[#FFE515] rounded-lg text-black text-lg font-bold shadow-lg shadow-[#ababab] p-3 uppercase hover:shadow-lg disabled:opacity-80'>
               {loading ? "Creating..." : "Create listing"}</button>
               {error && <p className='text-red-700 text-sm'>{error}</p>}
           </div>
       </form>
-      <button className='bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-3 mb-3 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-3/5 mx-auto block'>Create Listing</button>
     </main>
+    </div>
   );
 }

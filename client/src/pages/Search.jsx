@@ -116,9 +116,9 @@ export default function Search() {
       };
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row text-[#000] bg-opacity-10 bg-[#051905] pt-16">
 
-        <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
+        <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen ">
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
                 <div className="flex items-center gap-2">
                     <label className="whitespace-nowrap font-semibold">Search Term:</label>
@@ -170,12 +170,12 @@ export default function Search() {
                         <option value='createdAt_asc'>Oldest</option>
                     </select>
                 </div>
-                <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">Search</button>
+                <button className="bg-[#FFE515] text-black font-bold text-lg p-3 rounded-lg uppercase shadow-lg shadow-[#ababab] hover:opacity-95">Search</button>
             </form>
         </div>
 
-        <div className="flex-1">
-            <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">Listing results: </h1>
+        <div className="flex-1 bg-gradient-to-br from-[#4a5715] from-1% via-[#031411] via-15% to-[#031411] to-90%">
+            <h1 className=" border-b p-3 mt-5 text-6xl font-bold text-[#FFE515] m-3" >Listing <span className='text-6xl font-normal text-[#ffffff]'>results: </span></h1>
             <div className="p-7 flex flex-wrap gap-4">
                 {!loading && listings.length === 0 && (
                     <p className="text-xl text-slate-700">No listing found</p>
@@ -193,7 +193,7 @@ export default function Search() {
                 {showMore && (
             <button
               onClick={onShowMoreClick}
-              className='text-green-700 hover:underline p-7 text-center w-full'
+              className='text-sm text-[#FFE515] opacity-75 hover:underline p-7 text-center w-full'
             >
               Show more
             </button>
@@ -201,9 +201,6 @@ export default function Search() {
 
             </div>
         </div>
-
-        
-
     </div>
   )
 }

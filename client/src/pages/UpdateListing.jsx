@@ -158,6 +158,7 @@ export default function UpdateListing() {
   }
 
   return (
+    <div className='bg-gradient-to-r from-[#031411] to-[#07221d] p-3 pt-16'>
     <main className =" bg-white shadow-xl rounded-lg m-5 p-3 max-w-4xl mx-auto">
 
       <div className="flex items-center">
@@ -270,12 +271,12 @@ export default function UpdateListing() {
                 </button>
                 </div>
               ))}
-            <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:shadow-lg disabled:opacity-80'>
+            <button disabled={loading || uploading} className='bg-[#FFE515] rounded-lg text-black text-lg font-bold shadow-lg shadow-[#ababab] p-3 uppercase hover:shadow-lg disabled:opacity-80'>
               {loading ? "Updating..." : "Update listing"}</button>
               {error && <p className='text-red-700 text-sm'>{error}</p>}
           </div>
       </form>
-      <button className='bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-3 mb-3 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-3/5 mx-auto block'>Update Listing</button>
     </main>
+    </div>
   );
 }

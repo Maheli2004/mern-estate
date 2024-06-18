@@ -26,14 +26,16 @@ export default function Header() {
     
 
   return (
-    <header style={{ backgroundColor: 'rgb(2, 33, 28)' }} className='shadow-md'>
+    <header className='bg-[#031411]  border-b border-[#1d1c1c] fixed w-full top-0 z-10' 
+    // style={{ background: `url("") center no-repeat`, backgroundSize: 'cover',}} 
+    >
         <div className='flex justify-between items-center max-w-screen-xl mx-auto p-2 '>
 
             <Link to="/">
             <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <img src="https://res.cloudinary.com/dv0m2dtyw/image/upload/v1717816792/guy1nnk4w7tn5jhzj19v.png" className="h-8" alt="Flowbite Logo" />
-                <span className='text-slate-500'>Nest</span>
-                <span className='text-slate-200'>Easy</span>
+            <img src="https://res.cloudinary.com/dv0m2dtyw/image/upload/v1717816792/guy1nnk4w7tn5jhzj19v.png" className="h-8" alt="Logo" />
+                <span className='text-[#ffffff]'>Nest</span>
+                <span className='text-[#f6ff00]'>Easy</span>
             </h1>
             </Link>
 
@@ -51,12 +53,12 @@ export default function Header() {
             </form>
 
             <ul className="flex gap-8 items-center">
-                <Link to="/"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Home</li></Link>
-                <Link to="/about"><li className="hidden sm:inline text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">About</li></Link>
+                <Link to="/"><li className="hidden sm:inline text-white transition-colors duration-300 hover:text-white font-semibold text-lg">Home</li></Link>
+                <Link to="/about"><li className="hidden sm:inline text-white transition-colors duration-300 hover:text-white font-semibold text-lg">About</li></Link>
                 <Link to="/profile">
                 { currentUser ? (
                     <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 object-cover" src={currentUser.avatar} alt="profile"/>
-                ): <li className="text-gray-300 transition-colors duration-300 hover:text-white font-semibold text-lg">Sign In</li>
+                ): <li className="text-white transition-colors duration-300 hover:text-white font-semibold text-lg">Sign In</li>
                 }
                 </Link>
             </ul>

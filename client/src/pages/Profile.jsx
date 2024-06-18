@@ -1,4 +1,4 @@
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaPen, FaTrash } from 'react-icons/fa';
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
@@ -148,14 +148,16 @@ export default function Profile() {
   };
 
   return (
-    <div className ="max-w-3xl mx-4 sm:max-w-lg md:max-w-2xl lg:max-w-lg xl:max-w-3xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mt-10 mb-10 ">
-      <h1 className="text-3xl font-semibold text-center my-5">Profile</h1>
+    <div className='bg-gradient-to-br from-[#4a5715] from-1% via-[#031411] via-15% to-[#031411] to-90% p-3 pt-16'>
+      <div className='p-10 pb-2'>
+        <h1 className="text-center text-6xl font-bold text-[#FFE515] pb-10">User <span className='text-6xl font-normal text-[#ffffff]'>Profile</span></h1>
+        <div className ="h-60 overflow-hidden ">
+          <img className =" object-cover object-top w-full rounded-3xl backdrop-blur-sm bg-black/10 " src='https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt='Mountain'/>
+        </div>
 
-      <div className ="rounded-t-lg h-32 overflow-hidden">
-        <img className ="object-cover object-top w-full " src='https://media.istockphoto.com/id/1971556868/photo/view-from-above-of-residential-houses-in-living-area-in-rochester-ny-at-night-illuminated.webp?b=1&s=170667a&w=0&k=20&c=qaWhk54wSWtB3CIr-r7sq6nIqCiNTn9rW1gHCZQ557g=' alt='Mountain'/>
-        
       </div>
 
+    <div className ="max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mb-2 ">
       <p className="text-sm self-center font-semibold">
           {fileUploadError ? 
           (<span className="text-red-700">Error image upload!
@@ -172,71 +174,81 @@ export default function Profile() {
           )}
         </p>
 
-      <form onSubmit={handleSubmit} className="flex flex-col ">
+      <form onSubmit={handleSubmit} className="flex flex-col">
         <input onChange={(e)=> setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept="image/*"/>
-        <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile" className="border-4 border-white rounded-full object-cover object-center h-32 w-32 cursor-pointer self-center  mx-auto relative -mt-16  overflow-hidden" />
+        <img onClick={()=>fileRef.current.click()} src={formData.avatar || currentUser.avatar} alt="profile" className="border-4 border-white rounded-full object-cover object-center h-32 w-32 cursor-pointer self-center  mx-auto relative -mt-20  overflow-hidden" />
         <input type="text" placeholder="username" defaultValue={currentUser.username}  className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="username" onChange={handleChange}/>
         <input type="email" placeholder="email" defaultValue={currentUser.email}  className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="email" onChange={handleChange}/>
         <input type="password" placeholder="password" className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#3182CE] mt-4" id="password" onChange={handleChange}/>
         <button
           disabled={loading}
-          className='bg-[#1062af] rounded-lg text-white shadow-lg py-3 mt-5 hover:bg-opacity-95 transition duration-300 disabled:opacity-80 w-4/5 mx-auto'
+          className=' bg-[#FFE515] rounded-lg text-black text-lg font-bold shadow-lg shadow-[#ababab] py-3 mt-5 hover:bg-opacity-65 transition duration-300 disabled:opacity-60 w-60 mx-auto'
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
-
-        {/* <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-opacity-95" to={"/create-listing"}> */}
-        <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center mt-5 w-4/5 mx-auto hover:bg-opacity-95" to={"/create-listing"}>
-        Create Listing
-        </Link>
-
       </form>
 
-      <div className="flex justify-between mt-5">
-        <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer ">Delete account</span>
-        <span onClick={handleSignOut} className="text-red-700 cursor-pointer ">Sign out</span>
-      </div>
-      <p className="text-red-700 mt-5">
+      <p className="flex justify-center text-red-700 mt-5">
         {error ? error : ""}
       </p>
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>
-      <button onClick={handleShowListings} className="text-green-700 w-full">Show Listing</button>
-      <p className="text-red-700 mt-5">{showListingsError ? 'Error showing listings' : ''}</p>
+      </div>
 
+      <div className='flex justify-center max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg  p-3 mt-3 mb-3 '>
+        {/* <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:bg-opacity-95" to={"/create-listing"}> */}
+      <Link className="text-xl font-semibold" to={"/create-listing"}>
+        Create Listing
+        </Link>
+      </div>
+
+      <div className="flex justify-center max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mt-3 mb-3 ">
+        <span onClick={handleDeleteUser} className=" cursor-pointer text-xl font-semibold ">Delete account</span>
+      </div>
+
+      <div className="flex justify-center max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mt-3 mb-3">
+        <span onClick={handleSignOut} className=" cursor-pointer text-xl font-semibold ">Sign out</span>
+      </div>
+
+      <div className="flex justify-center max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white shadow-xl rounded-lg p-3 mt-3 mb-3 ">
+      <button onClick={handleShowListings} className="text-black text-xl font-semibold">Show Listing</button>
+      <p className="text-red-700 mt-5">{showListingsError ? 'Error showing listings' : ''}</p>
+      </div>
+      
       {userListings && 
       userListings.length > 0 && 
-      <div className="flex flex-col gap-4">
-        <h1 className='text-center text-2xl font-semibold'> Your Listings</h1>
+      <div className="flex max-w-4xl mx-5 sm:max-w-xl md:max-w-3xl lg:max-w-xl xl:max-w-5xl sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto bg-white p-3 mb-3 flex-col gap-2">
+        {/* <h1 className='text-center text-2xl font-semibold'> Your Listings</h1> */}
         {userListings.map((listing) => ( 
-      <div key={listing._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
+      <div key={listing._id} className="border border-[#b4b2b2] rounded-lg p-3 flex justify-between items-center gap-2">
         
         <Link  to={`/listing/${listing._id}`}>
-        <img src={listing.imageUrls} alt="listing cover" className="h-16 w-16 object-contain"/>
+        <img src={listing.imageUrls} alt="listing cover" className="h-32 w-32 object-contain"/>
         </Link>
 
-        <Link className='flex-1 text-slate-700 font-semibold hover:underline truncate' to={`/listing/${listing._id}`}>
+        <Link className='flex-1 text-[#161616] font-semibold text-lg hover:underline truncate' to={`/listing/${listing._id}`}>
         <p>{listing.name}</p>
         </Link>
 
         <div className='flex flex-col items-center'>
-          <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
+          {/* <button onClick={()=>handleListingDelete(listing._id)} className='text-red-700 uppercase'>Delete</button>
 
           <Link to={`/update-listing/${listing._id}`}>
           <button  className='text-green-700 uppercase'>Edit</button>
-          </Link>
+          </Link> */}
 
-          <FaArrowLeft onClick={()=>handleListingDelete(listing._id)} className="text-xl m-3 cursor-pointer" type='button' />
+          <FaTrash onClick={()=>handleListingDelete(listing._id)} className="text-xl m-3 cursor-pointer text-[#bd2727]" type='button' />
 
           <Link to={`/update-listing/${listing._id}`} >
-          <FaArrowLeft className="text-xl m-3 cursor-pointer" type='button' />
+          <FaPen className="text-xl m-3 cursor-pointer text-[#0b531b]" type='button' />
           </Link>
         </div>
 
       </div>))}
 
       </div>}
+    
     </div>
   );
 }
